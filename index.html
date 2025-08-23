@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>법령정보시스템</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="logo">법령정보시스템</div>
+    <nav class="nav">
+      <a href="index.html">홈</a>
+      <a href="#">법령</a>
+      <a href="#">최근 업데이트</a>
+      <a href="#">즐겨찾기</a>
+    </nav>
+  </header>
+
+  <!-- 메인 검색 영역 -->
+  <section class="search-section">
+    <div class="search-tabs">
+      <button class="tab active" data-type="law">법령명</button>
+      <button class="tab" data-type="article">조문</button>
+      <button class="tab" data-type="keyword">키워드</button>
+    </div>
+    <div class="search-box">
+      <input type="text" placeholder="검색어를 입력하세요..." />
+      <button class="search-btn">검색</button>
+    </div>
+  </section>
+
+  <!-- 최근 업데이트 -->
+  <section class="updates">
+    <h2>최근 업데이트</h2>
+    <div class="update-list">
+      <div class="update-card">
+        <h3><a href="law.html">개인정보 보호법</a></h3>
+        <p>시행일: 2025-01-01</p>
+        <p>개인정보 처리에 관한 사항을 규정</p>
+      </div>
+      <div class="update-card">
+        <h3><a href="law.html">전자상거래법</a></h3>
+        <p>시행일: 2025-02-15</p>
+        <p>전자상거래에서의 소비자 보호 관련 규정</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <p>© 2025 법령정보시스템 | contact@lawinfo.kr</p>
+  </footer>
+
+  <script>
+    // 탭 버튼 기능
+    const tabs = document.querySelectorAll(".tab");
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+/* 전체 기본 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #333;
+}
+
+/* 헤더 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1a3d7c;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #444;
+  font-size: 14px;
+}
+
+.nav a:hover {
+  color: #1a3d7c;
+}
+
+/* 검색 영역 */
+.search-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: #f9fafc;
+}
+
+.search-tabs {
+  margin-bottom: 20px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-size: 16px;
+  margin: 0 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+
+.tab.active {
+  background: #1a3d7c;
+  color: #fff;
+}
+
+.search-box {
+  display: inline-flex;
+  border: 2px solid #1a3d7c;
+  border-radius: 30px;
+  overflow: hidden;
+  max-width: 600px;
+  width: 100%;
+}
+
+.search-box input {
+  border: none;
+  padding: 14px 20px;
+  flex: 1;
+  outline: none;
+  font-size: 16px;
+}
+
+.search-btn {
+  background: #1a3d7c;
+  color: #fff;
+  border: none;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.search-btn:hover {
+  background: #163466;
+}
+
+/* 업데이트 영역 */
+.updates {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.updates h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #1a3d7c;
+}
+
+.update-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.update-card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: 0.2s;
+}
+
+.update-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.update-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.update-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.update-card h3 a:hover {
+  color: #1a3d7c;
+}
+
+/* 푸터 */
+.footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  color: #666;
+  background: #f5f5f5;
+  margin-top: 40px;
+}
+
+/* 법령 상세 페이지 */
+.law-detail {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.law-title {
+  grid-column: span 2;
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: #1a3d7c;
+}
+
+.law-meta {
+  grid-column: span 2;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.law-toc {
+  background: #f9fafc;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+}
+
+.law-toc h2 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #1a3d7c;
+}
+
+.law-toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.law-toc li {
+  margin-bottom: 10px;
+}
+
+.law-toc a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.law-toc a:hover {
+  color: #1a3d7c;
+}
+
+.law-content {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.law-article {
+  margin-bottom: 30px;
+}
+
+.law-article h3 {
+  font-size: 18px;
+  color: #1a3d7c;
+  margin-bottom: 10px;
+}
+
+.law-article p,
+.law-article ul {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
