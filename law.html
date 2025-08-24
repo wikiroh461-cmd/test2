@@ -17,6 +17,19 @@
     </nav>
   </header>
 
+  <!-- 검색 영역 -->
+  <section class="search-section">
+    <div class="search-tabs">
+      <button class="tab active" data-type="law">법령명</button>
+      <button class="tab" data-type="article">조문</button>
+      <button class="tab" data-type="keyword">키워드</button>
+    </div>
+    <div class="search-box">
+      <input id="searchInput" type="text" placeholder="검색어를 입력하세요..." />
+      <button class="search-btn" id="searchBtn">검색</button>
+    </div>
+  </section>
+
   <!-- 법령 상세 -->
   <main class="law-detail">
     <h1 class="law-title">개인정보 보호법</h1>
@@ -65,5 +78,31 @@
   <footer class="footer">
     <p>© 2025 법령정보시스템 | contact@lawinfo.kr</p>
   </footer>
+
+  <script>
+    // 탭 버튼 기능
+    const tabs = document.querySelectorAll(".tab");
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+      });
+    });
+
+    // 검색 버튼 및 엔터키 → law.html 이동
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+
+    function goToLawPage() {
+      if (searchInput.value.trim() !== "") {
+        window.location.href = "law.html";
+      }
+    }
+
+    searchBtn.addEventListener("click", goToLawPage);
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") goToLawPage();
+    });
+  </script>
 </body>
 </html>
