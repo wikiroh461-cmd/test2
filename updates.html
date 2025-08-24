@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>최근 업데이트 - 법령정보시스템</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="logo">법령정보시스템</div>
+    <nav class="nav">
+      <a href="index.html">홈</a>
+      <a href="law/1.html">법령</a>
+      <a href="updates.html" class="active">최근 업데이트</a>
+    </nav>
+  </header>
+
+  <!-- 검색 + 필터 -->
+  <section class="search-filter">
+    <div class="search-box">
+      <input id="searchInput" type="text" placeholder="검색어를 입력하세요..." />
+      <button class="search-btn" id="searchBtn">검색</button>
+    </div>
+    <div class="update-filter">
+      <button class="filter-btn active" data-type="all">전체</button>
+      <button class="filter-btn" data-type="최신법령">최신법령</button>
+      <button class="filter-btn" data-type="자치법규">자치법규</button>
+      <button class="filter-btn" data-type="행정규칙">행정규칙</button>
+      <button class="filter-btn" data-type="판례">판례</button>
+    </div>
+  </section>
+
+  <!-- 최근 업데이트 목록 -->
+  <section class="updates">
+    <table class="update-table">
+      <thead>
+        <tr><th>제목</th><th>구분</th><th>시행일</th></tr>
+      </thead>
+      <tbody>
+        <tr data-type="최신법령">
+          <td><a href="law/1.html">개인정보 보호법</a></td>
+          <td>최신법령</td>
+          <td>2025-01-01</td>
+        </tr>
+        <tr data-type="최신법령">
+          <td><a href="law/2.html">전자상거래법</a></td>
+          <td>최신법령</td>
+          <td>2025-02-15</td>
+        </tr>
+        <tr data-type="자치법규">
+          <td><a href="#">서울특별시 조례</a></td>
+          <td>자치법규</td>
+          <td>2025-02-20</td>
+        </tr>
+        <tr data-type="행정규칙">
+          <td><a href="#">행정처분 기준 규칙</a></td>
+          <td>행정규칙</td>
+          <td>2025-02-25</td>
+        </tr>
+        <tr data-type="판례">
+          <td><a href="#">대법원 판례 2025다10001</a></td>
+          <td>판례</td>
+          <td>2025-02-28</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <p>© 2025 법령정보시스템 | contact@lawinfo.kr</p>
+  </footer>
+
+  <script>
+    // 필터 동작
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    const rows = document.querySelectorAll(".update-table tbody tr");
+    filterBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const type = btn.dataset.type;
+        rows.forEach(row => {
+          row.style.display = (type === "all" || row.dataset.type === type) ? "" : "none";
+        });
+      });
+    });
+
+    // 검색창 -> law 페이지 이동
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+    function goLaw() {
+      if (searchInput.value.trim()) window.location.href = "law/1.html";
+    }
+    searchBtn.addEventListener("click", goLaw);
+    searchInput.addEventListener("keydown", e => { if (e.key==="Enter") goLaw(); });
+  </script>
+</body>
+</html>
