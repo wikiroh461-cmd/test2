@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>개인정보 보호법 - 법령정보시스템</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- 헤더 -->
+  <header class="header">
+    <div class="logo">법령정보시스템</div>
+    <nav class="nav">
+      <a href="../index.html">홈</a>
+      <a href="#">법령</a>
+      <a href="#">최근 업데이트</a>
+      <a href="#">즐겨찾기</a>
+    </nav>
+  </header>
+
+  <!-- 검색 -->
+  <section class="search-section">
+    <div class="search-box">
+      <input id="searchInput" type="text" placeholder="검색어를 입력하세요..." />
+      <button class="search-btn" id="searchBtn">검색</button>
+    </div>
+  </section>
+
+  <!-- 법령 상세 -->
+  <main class="law-detail">
+    <h1 class="law-title">개인정보 보호법</h1>
+    <p class="law-meta">시행일: 2025-01-01 | 제정: 2011-09-30</p>
+
+    <!-- 프린트 버튼 -->
+    <button class="print-btn" onclick="openPrint()">🖨️ 프린트</button>
+
+    <aside class="law-toc">
+      <h2>조문 목차</h2>
+      <ul>
+        <li><a href="#article1">제1조 (목적)</a></li>
+        <li><a href="#article2">제2조 (정의)</a></li>
+      </ul>
+    </aside>
+
+    <section class="law-content">
+      <article id="article1" class="law-article">
+        <h3>제1조 (목적)</h3>
+        <p>이 법은 개인정보의 처리 및 보호에 관한 기본적인 사항을 정함으로써 개인의 자유와 권리를 보장함을 목적으로 한다.</p>
+      </article>
+      <article id="article2" class="law-article">
+        <h3>제2조 (정의)</h3>
+        <p>① "개인정보"란 살아 있는 개인에 관한 정보로서...</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 법령정보시스템 | contact@lawinfo.kr</p>
+  </footer>
+
+  <script>
+    // 프린트 팝업 열기
+    function openPrint() {
+      const printWindow = window.open('', '_blank', 'width=800,height=900');
+      const content = document.querySelector('.law-detail').innerHTML;
+
+      printWindow.document.write(`
+        <html>
+        <head>
+          <title>출력 - 개인정보 보호법</title>
+          <link rel="stylesheet" href="../print.css">
+        </head>
+        <body>
+          <div class="print-container">${content}</div>
+          <script>window.onload = function(){ window.print(); }</script>
+        </body>
+        </html>
+      `);
+      printWindow.document.close();
+    }
+  </script>
+</body>
+</html>
