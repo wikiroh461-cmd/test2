@@ -1,25 +1,61 @@
-/* ... 기존 코드 유지 ... */
-
-/* 법령 상세 페이지 */
-.law-detail {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 40px;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
+/* 업데이트 목록 테이블 */
+.update-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
-.law-title {
-  grid-column: span 2;
-  font-size: 26px;
-  margin: 0; /* 🔥 제목 위아래 여백 제거 */
+.update-table th, .update-table td {
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.update-table th {
+  background: #f2f2f2;
+  font-weight: 600;
+}
+
+.update-table td a {
   color: #1a3d7c;
+  text-decoration: none;
+}
+.update-table td a:hover {
+  text-decoration: underline;
 }
 
-.law-meta {
-  grid-column: span 2;
-  font-size: 14px;
-  color: #666;
-  margin: 8px 0 20px; /* 🔥 위 여백 최소화, 아래 약간만 */
+/* 더보기 버튼 */
+.more-btn-wrap {
+  margin-top: 10px;
+  text-align: right;
+}
+.more-btn {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #1a3d7c;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.more-btn:hover {
+  background: #2a4d9c;
+}
+
+/* 카테고리 버튼 */
+.update-filter {
+  margin: 20px 0;
+  text-align: center;
+}
+.filter-btn {
+  padding: 8px 14px;
+  margin: 0 5px;
+  border: 1px solid #1a3d7c;
+  background: white;
+  color: #1a3d7c;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: #1a3d7c;
+  color: white;
 }
