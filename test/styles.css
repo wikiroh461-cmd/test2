@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: #fff;
+  border-bottom: 1px solid #e9ecef;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a3d7c;
+}
+.nav a {
+  margin-left: 18px;
+  color: #333;
+  text-decoration: none;
+}
+.nav a.active {
+  color: #1a3d7c;
+  font-weight: 700;
+}
+.search-section {
+  padding: 28px 16px;
+  text-align: center;
+}
+.search-box input {
+  padding: 8px;
+  width: 200px;
+  max-width: 70%;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.search-box button {
+  padding: 8px 12px;
+  border: none;
+  background-color: #1a3d7c;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.updates {
+  padding: 20px;
+}
+.update-filter {
+  margin-bottom: 12px;
+}
+.filter-btn {
+  margin-right: 6px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.filter-btn.active {
+  background: #1a3d7c;
+  color: #fff;
+  border-color: #1a3d7c;
+}
+.update-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.update-table th, .update-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+.update-table th {
+  background: #f1f1f1;
+}
+.law-detail {
+  padding: 20px;
+}
+.law-title {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+.law-meta {
+  font-size: 12pt;
+  color: #555;
+  margin-bottom: 15px;
+}
+.law-article h3 {
+  margin-top: 15px;
+  font-size: 14pt;
+}
+.law-article p {
+  font-size: 11pt;
+  line-height: 1.5;
+}
+.print-btn {
+  margin-top: 20px;
+  padding: 8px 14px;
+  border: none;
+  background-color: #1a3d7c;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.footer {
+  padding: 16px;
+  text-align: center;
+  background: #f9f9f9;
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+  }
+  .nav {
+    margin-top: 8px;
+  }
+  .nav a {
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 12px;
+    margin-bottom: 6px;
+  }
+  .search-box input {
+    width: 60%;
+    margin-bottom: 6px;
+  }
+  .update-table th, .update-table td {
+    font-size: 10pt;
+    padding: 6px;
+  }
+  .law-title {
+    font-size: 20px;
+  }
+  .law-meta {
+    font-size: 10pt;
+  }
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>개인정보 보호법</title>
+<link rel="stylesheet" href="../style.css">
+<style>
+.law-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+.law-sidebar {
+  width: 220px;
+  border-right: 1px solid #ccc;
+}
+.law-sidebar h3 { margin-top: 0; }
+.law-sidebar ul { list-style: none; padding: 0; }
+.law-sidebar li { margin: 6px 0; cursor: pointer; color: #1a3d7c; }
+.law-sidebar li.active { font-weight: bold; }
+.law-main {
+  flex: 1;
+}
+.tab-buttons {
+  margin-bottom: 12px;
+}
+.tab-buttons button {
+  margin-right: 6px;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.tab-buttons button.active {
+  background: #1a3d7c;
+  color: #fff;
+  border-color: #1a3d7c;
+}
+.article h2 { margin-top: 0; }
+#historyList { list-style: none; padding: 0; }
+#historyList li { margin: 5px 0; cursor: pointer; color: #1a3d7c; }
+#historyList li:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">법령정보시스템</div>
+  <nav class="nav">
+    <a href="../index.html">홈</a>
+    <a href="../updates.html?type=최신법령">법령</a>
+  </nav>
+</header>
+
+<div class="law-container">
+  <!-- 좌측 목차 -->
+  <div class="law-sidebar">
+    <h3>목차</h3>
+    <ul id="toc">
+      <li data-id="article1" class="active">제1조(목적)</li>
+      <li data-id="article2">제2조(정의)</li>
+      <li data-id="article3">제3조(개인정보 처리 원칙)</li>
+      <li data-id="article4">제4조(개인정보 처리자의 의무)</li>
+    </ul>
+  </div>
+
+  <!-- 우측 본문 -->
+  <div class="law-main">
+    <div class="tab-buttons">
+      <button id="contentTab" class="active">본문</button>
+      <button id="historyTab">연혁</button>
+      <button onclick="printContent()">프린트</button>
+    </div>
+
+    <div id="contentArea">
+      <div id="article1" class="article" style="display:block;">
+        <h2>제1조(목적)</h2>
+        <p>이 법은 개인정보를 보호하고, 개인정보의 적정한 활용을 촉진하기 위함을 목적으로 한다.</p>
+      </div>
+      <div id="article2" class="article" style="display:none;">
+        <h2>제2조(정의)</h2>
+        <p>이 법에서 사용하는 용어의 정의는 다음과 같다.<br>
+        1. 개인정보: 살아있는 개인에 관한 정보<br>
+        2. 개인정보 처리: 수집, 보관, 이용, 제공 등</p>
+      </div>
+      <div id="article3" class="article" style="display:none;">
+        <h2>제3조(개인정보 처리 원칙)</h2>
+        <p>개인정보는 적법하고 공정하게 처리되어야 하며 목적 달성에 필요한 범위 내에서 수집되어야 한다.</p>
+      </div>
+      <div id="article4" class="article" style="display:none;">
+        <h2>제4조(개인정보 처리자의 의무)</h2>
+        <p>개인정보 처리자는 안전성 확보, 목적 외 이용 금지, 제3자 제공 제한 등 법령에 따른 의무를 이행해야 한다.</p>
+      </div>
+    </div>
+
+    <div id="historyArea" style="display:none;">
+      <h3>제개정 연혁</h3>
+      <ul id="historyList">
+        <li data-article="article1">2024-01-01 제1조 개정</li>
+        <li data-article="article2">2024-06-15 제2조 신설</li>
+        <li data-article="article3">2024-12-01 제3조 일부 개정</li>
+        <li data-article="article4">2025-03-05 제4조 신설</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2025 법령정보시스템 | contact@lawinfo.kr</p>
+</footer>
+
+<script>
+// 목차 클릭
+const tocItems = document.querySelectorAll("#toc li");
+const articles = document.querySelectorAll(".article");
+tocItems.forEach(item => {
+  item.addEventListener("click", ()=>{
+    tocItems.forEach(i=>i.classList.remove("active"));
+    item.classList.add("active");
+    articles.forEach(a => a.style.display = (a.id===item.dataset.id) ? "block":"none");
+  });
+});
+
+// 탭
+const contentTab = document.getElementById("contentTab");
+const historyTab = document.getElementById("historyTab");
+const contentArea = document.getElementById("contentArea");
+const historyArea = document.getElementById("historyArea");
+
+contentTab.addEventListener("click", ()=>{
+  contentTab.classList.add("active");
+  historyTab.classList.remove("active");
+  contentArea.style.display = "block";
+  historyArea.style.display = "none";
+});
+historyTab.addEventListener("click", ()=>{
+  contentTab.classList.remove("active");
+  historyTab.classList.add("active");
+  contentArea.style.display = "none";
+  historyArea.style.display = "block";
+});
+
+// 연혁 클릭 → 해당 조문 표시
+const historyList = document.querySelectorAll("#historyList li");
+historyList.forEach(item=>{
+  item.addEventListener("click", ()=>{
+    const targetId = item.dataset.article;
+    // 본문 탭 활성화
+    contentTab.click();
+    // 조문 표시
+    articles.forEach(a => a.style.display = (a.id===targetId) ? "block":"none");
+    tocItems.forEach(i=>i.classList.toggle("active", i.dataset.id===targetId));
+  });
+});
+
+// 프린트
+function printContent() {
+  const popup = window.open("", "printPopup", "width=800,height=600");
+  popup.document.write(`<html><head><title>프린트</title><link rel="stylesheet" href="../style.css"></head><body>`);
+  if(contentArea.style.display==="block") {
+    popup.document.write(contentArea.innerHTML);
+  } else {
+    popup.document.write(historyArea.innerHTML);
+  }
+  popup.document.write(`<script>window.onload=function(){window.print();window.close();}<\/script></body></html>`);
+  popup.document.close();
+}
+</script>
+</body>
+</html>

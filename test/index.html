@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>법령정보시스템</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="logo">법령정보시스템</div>
+  <nav class="nav">
+    <a href="index.html">홈</a>
+    <a href="updates.html?type=최신법령">법령</a>
+    <a href="updates.html">최근 업데이트</a>
+    <a href="updates.html?type=자치법규">자치법규</a>
+    <a href="updates.html?type=행정규칙">행정규칙</a>
+    <a href="updates.html?type=판례">판례</a>
+  </nav>
+</header>
+
+<section class="search-section">
+  <div class="search-box">
+    <input id="searchInput" type="text" placeholder="검색어를 입력하세요..." />
+    <button class="search-btn" id="searchBtn">검색</button>
+  </div>
+</section>
+
+<section class="updates">
+  <h2>최근 업데이트</h2>
+  <div class="update-filter">
+    <button class="filter-btn active" data-type="all">전체</button>
+    <button class="filter-btn" data-type="최신법령">최신법령</button>
+    <button class="filter-btn" data-type="자치법규">자치법규</button>
+    <button class="filter-btn" data-type="행정규칙">행정규칙</button>
+    <button class="filter-btn" data-type="판례">판례</button>
+  </div>
+
+  <table class="update-table">
+    <thead>
+      <tr><th>제목</th><th>구분</th><th>시행일</th></tr>
+    </thead>
+    <tbody>
+      <!-- 최신법령 -->
+      <tr data-type="최신법령"><td><a href="law/1.html">개인정보 보호법</a></td><td>최신법령</td><td>2025-01-01</td></tr>
+      <tr data-type="최신법령"><td><a href="law/2.html">전자상거래법</a></td><td>최신법령</td><td>2025-02-15</td></tr>
+
+      <!-- 자치법규 -->
+      <tr data-type="자치법규"><td><a href="local/1.html">서울특별시 조례</a></td><td>자치법규</td><td>2025-02-20</td></tr>
+
+      <!-- 행정규칙 -->
+      <tr data-type="행정규칙"><td><a href="gyu/1.html">행정처분 기준 규칙</a></td><td>행정규칙</td><td>2025-02-25</td></tr>
+
+      <!-- 판례 -->
+      <tr data-type="판례"><td><a href="court/1.html">대법원 판례 2025다10001</a></td><td>판례</td><td>2025-02-28</td></tr>
+    </tbody>
+  </table>
+  <div class="more-btn-wrap">
+    <a class="more-btn" href="updates.html">더보기</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2025 법령정보시스템 | contact@lawinfo.kr</p>
+</footer>
+
+<script>
+// 검색
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+function goSearch() {
+  const q = searchInput.value.trim();
+  if(q) window.location.href = "updates.html?query=" + encodeURIComponent(q);
+}
+searchBtn.addEventListener("click", goSearch);
+searchInput.addEventListener("keydown", e => { if(e.key==="Enter") goSearch(); });
+
+// 필터 (최대 4개만 보여줌)
+const filterBtns = document.querySelectorAll(".filter-btn");
+const rows = document.querySelectorAll(".update-table tbody tr");
+function filterRows(type) {
+  filterBtns.forEach(btn=>{
+    btn.classList.toggle("active", btn.dataset.type === type || (type==="all" && btn.dataset.type==="all"));
+  });
+  let count = 0;
+  rows.forEach(row=>{
+    if(type==="all" || row.dataset.type===type){
+      row.style.display = count<4 ? "" : "none";
+      count++;
+    } else row.style.display = "none";
+  });
+}
+filterBtns.forEach(btn=>{
+  btn.addEventListener("click", ()=>filterRows(btn.dataset.type));
+});
+const params = new URLSearchParams(window.location.search);
+const typeParam = params.get("type");
+if(typeParam) filterRows(typeParam);
+else filterRows("all");
+</script>
+</body>
+</html>
