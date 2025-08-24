@@ -1,0 +1,38 @@
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #000;
+  background: #fff;
+  margin: 20px;
+}
+
+.print-container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.logo {
+  font-size: 18pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 20pt;
+  margin-bottom: 5px;
+}
+
+.law-meta {
+  font-size: 10pt;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 15px;
+  font-size: 14pt;
+}
+
+p, li {
+  font-size: 11pt;
+  line-height: 1.5;
+}
