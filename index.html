@@ -25,8 +25,8 @@
       <button class="tab" data-type="keyword">키워드</button>
     </div>
     <div class="search-box">
-      <input type="text" placeholder="검색어를 입력하세요..." />
-      <button class="search-btn">검색</button>
+      <input id="searchInput" type="text" placeholder="검색어를 입력하세요..." />
+      <button class="search-btn" id="searchBtn">검색</button>
     </div>
   </section>
 
@@ -60,6 +60,21 @@
         tabs.forEach(t => t.classList.remove("active"));
         tab.classList.add("active");
       });
+    });
+
+    // 검색 버튼 및 엔터키 → law.html 이동
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+
+    function goToLawPage() {
+      if (searchInput.value.trim() !== "") {
+        window.location.href = "law.html";
+      }
+    }
+
+    searchBtn.addEventListener("click", goToLawPage);
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") goToLawPage();
     });
   </script>
 </body>
