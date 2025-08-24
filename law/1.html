@@ -4,9 +4,27 @@
   <meta charset="UTF-8">
   <title>개인정보 보호법 - 법령정보시스템</title>
   <link rel="stylesheet" href="../style.css">
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff; color:#333; }
+    .header, .footer { background:#f8f8f8; padding:10px 20px; }
+    .logo { font-weight:bold; font-size:1.2em; }
+    .nav a { margin-right:15px; text-decoration:none; color:#1a3d7c; }
+    .law-detail { padding:20px; display:flex; gap:20px; }
+    .law-toc { width:220px; }
+    .law-toc ul { list-style:none; padding:0; }
+    .law-toc li { margin-bottom:5px; cursor:pointer; color:#1a3d7c; }
+    .law-toc li.active { font-weight:bold; }
+    .law-content { flex:1; }
+    .law-article { margin-bottom:20px; }
+    .print-btn { padding:6px 12px; cursor:pointer; margin-bottom:10px; }
+    .history-list { list-style:none; padding:0; margin-top:20px; }
+    .history-list li { cursor:pointer; margin-bottom:5px; color:#1a3d7c; }
+    .history-list li:hover { text-decoration:underline; }
+    .tab-buttons button { margin-right:6px; padding:5px 10px; cursor:pointer; border:1px solid #ccc; border-radius:4px; background:#f9f9f9; }
+    .tab-buttons button.active { background:#1a3d7c; color:#fff; border-color:#1a3d7c; }
+  </style>
 </head>
 <body>
-  <!-- 헤더 -->
   <header class="header">
     <div class="logo">법령정보시스템</div>
     <nav class="nav">
@@ -17,40 +35,47 @@
     </nav>
   </header>
 
-  <!-- 검색 -->
-  <section class="search-section">
-    <div class="search-box">
-      <input id="searchInput" type="text" placeholder="검색어를 입력하세요..." />
-      <button class="search-btn" id="searchBtn">검색</button>
-    </div>
-  </section>
-
-  <!-- 법령 상세 -->
   <main class="law-detail">
-    <h1 class="law-title">개인정보 보호법</h1>
-    <p class="law-meta">시행일: 2025-01-01 | 제정: 2011-09-30</p>
+    <div style="flex:1 1 auto;">
+      <h1 class="law-title">개인정보 보호법</h1>
+      <p class="law-meta">시행일: 2025-01-01 | 제정: 2011-09-30</p>
+      <div class="tab-buttons">
+        <button id="contentTab" class="active">본문</button>
+        <button id="historyTab">연혁</button>
+        <button class="print-btn" onclick="openPrint()">🖨️ 프린트</button>
+      </div>
+      <section class="law-content" id="contentArea">
+        <article id="article1" class="law-article">
+          <h3>제1조 (목적)</h3>
+          <p>이 법은 개인정보의 처리 및 보호에 관한 기본적인 사항을 정함으로써 개인의 자유와 권리를 보장함을 목적으로 한다.</p>
+        </article>
+        <article id="article2" class="law-article">
+          <h3>제2조 (정의)</h3>
+          <p>① "개인정보"란 살아 있는 개인에 관한 정보로서...</p>
+        </article>
+      </section>
+      <section id="historyArea" style="display:none;">
+        <ul class="history-list">
+          <li data-content='
+            <article><h3>제1조 (목적)</h3><p>2024-01-01 버전: 목적 내용 수정.</p></article>
+            <article><h3>제2조 (정의)</h3><p>2024-01-01 버전: 정의 내용 수정.</p></article>
+          '>2024-01-01 제1조 개정</li>
+          <li data-content='
+            <article><h3>제1조 (목적)</h3><p>2024-06-15 버전: 목적 일부 수정.</p></article>
+            <article><h3>제2조 (정의)</h3><p>2024-06-15 버전: 제2조 신설 내용.</p></article>
+          '>2024-06-15 제2조 신설</li>
+        </ul>
+      </section>
+    </div>
 
-    <!-- 프린트 버튼 -->
-    <button class="print-btn" onclick="openPrint()">🖨️ 프린트</button>
-
+    <!-- 목차 -->
     <aside class="law-toc">
       <h2>조문 목차</h2>
-      <ul>
-        <li><a href="#article1">제1조 (목적)</a></li>
-        <li><a href="#article2">제2조 (정의)</a></li>
+      <ul id="toc">
+        <li data-id="article1" class="active">제1조 (목적)</li>
+        <li data-id="article2">제2조 (정의)</li>
       </ul>
     </aside>
-
-    <section class="law-content">
-      <article id="article1" class="law-article">
-        <h3>제1조 (목적)</h3>
-        <p>이 법은 개인정보의 처리 및 보호에 관한 기본적인 사항을 정함으로써 개인의 자유와 권리를 보장함을 목적으로 한다.</p>
-      </article>
-      <article id="article2" class="law-article">
-        <h3>제2조 (정의)</h3>
-        <p>① "개인정보"란 살아 있는 개인에 관한 정보로서...</p>
-      </article>
-    </section>
   </main>
 
   <footer class="footer">
@@ -58,11 +83,51 @@
   </footer>
 
   <script>
-    // 프린트 팝업 열기
-    function openPrint() {
-      const printWindow = window.open('', '_blank', 'width=800,height=900');
-      const content = document.querySelector('.law-detail').innerHTML;
+    const tocItems = document.querySelectorAll("#toc li");
+    const articles = document.querySelectorAll(".law-article");
+    const contentTab = document.getElementById("contentTab");
+    const historyTab = document.getElementById("historyTab");
+    const contentArea = document.getElementById("contentArea");
+    const historyArea = document.getElementById("historyArea");
+    const historyItems = document.querySelectorAll(".history-list li");
 
+    // 목차 클릭
+    tocItems.forEach(item=>{
+      item.addEventListener("click", ()=>{
+        tocItems.forEach(i=>i.classList.remove("active"));
+        item.classList.add("active");
+        articles.forEach(a=>a.style.display = (a.id===item.dataset.id)?"block":"none");
+      });
+    });
+
+    // 탭 전환
+    contentTab.addEventListener("click", ()=>{
+      contentTab.classList.add("active");
+      historyTab.classList.remove("active");
+      contentArea.style.display = "block";
+      historyArea.style.display = "none";
+    });
+    historyTab.addEventListener("click", ()=>{
+      contentTab.classList.remove("active");
+      historyTab.classList.add("active");
+      contentArea.style.display = "none";
+      historyArea.style.display = "block";
+    });
+
+    // 연혁 클릭 → 당시 전문 표시
+    historyItems.forEach(item=>{
+      item.addEventListener("click", ()=>{
+        contentTab.click(); // 본문 탭 활성화
+        contentArea.innerHTML = item.dataset.content;
+        tocItems.forEach(i=>i.classList.remove("active"));
+      });
+    });
+
+    // 프린트
+    function openPrint(){
+      const printWindow = window.open('','_blank','width=800,height=900');
+      const contentHTML = contentArea.style.display==="block"?contentArea.innerHTML:historyArea.innerHTML;
+      printWindow.document.open();
       printWindow.document.write(`
         <html>
         <head>
@@ -70,8 +135,10 @@
           <link rel="stylesheet" href="../print.css">
         </head>
         <body>
-          <div class="print-container">${content}</div>
-          <script>window.onload = function(){ window.print(); }</script>
+          <div class="print-container">${contentHTML}</div>
+          <script>
+            window.onload=function(){window.print(); window.close();};
+          <\/script>
         </body>
         </html>
       `);
