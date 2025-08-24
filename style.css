@@ -1,251 +1,150 @@
-/* ===========================
-   전체 기본 스타일
-=========================== */
+/* =============== Base =============== */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 body {
-  margin: 0;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Noto Sans KR", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: #fff;
   color: #333;
   line-height: 1.6;
 }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { margin: 0; font-weight: 700; }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-h1, h2, h3 {
-  margin: 0;
-  font-weight: 600;
-}
-
-/* ===========================
-   헤더 & 내비게이션
-=========================== */
+/* =============== Header / Nav =============== */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
   padding: 14px 24px;
-  background: #fff;
-  border-bottom: 1px solid #e5e5e5;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  background: #fff; border-bottom: 1px solid #e9ecef;
 }
+.logo { font-size: 20px; font-weight: 800; color: #1a3d7c; }
+.nav a { margin-left: 18px; font-size: 15px; color: #333; }
+.nav a.active { color: #1a3d7c; font-weight: 700; }
 
-.logo {
-  font-size: 20px;
-  font-weight: 700;
-  color: #1a3d7c;
-}
-
-.nav a {
-  margin-left: 18px;
-  font-size: 15px;
-  color: #333;
-}
-
-.nav a.active {
-  color: #1a3d7c;
-  font-weight: 600;
-}
-
-/* ===========================
-   검색창 & 필터
-=========================== */
-.search-filter {
-  padding: 24px;
+/* =============== Search (index, law) =============== */
+.search-section {
   text-align: center;
+  padding: 28px 16px;
   background: #f9fafc;
 }
-
 .search-box {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.search-box input {
-  width: 320px;
-  padding: 10px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-}
-
-.search-btn {
-  padding: 10px 18px;
-  border: none;
-  background: #1a3d7c;
-  color: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.search-btn:hover {
-  background: #16346a;
-}
-
-.update-filter {
-  margin-top: 14px;
-}
-
-.filter-btn {
-  padding: 8px 14px;
-  margin: 0 5px;
-  border: 1px solid #1a3d7c;
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid #cbd5e1; border-radius: 10px; padding: 8px;
   background: #fff;
-  color: #1a3d7c;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
 }
-
-.filter-btn.active,
-.filter-btn:hover {
-  background: #1a3d7c;
-  color: #fff;
+.search-box input {
+  width: 320px; max-width: 70vw;
+  padding: 10px 12px; border: 1px solid #e2e8f0; border-radius: 8px;
+  font-size: 15px; outline: none;
 }
+.search-btn {
+  padding: 10px 16px; border: none; border-radius: 8px;
+  background: #1a3d7c; color: #fff; font-size: 15px; cursor: pointer;
+}
+.search-btn:hover { background: #16346a; }
 
-/* ===========================
-   업데이트 목록 (테이블)
-=========================== */
+/* =============== Search + Filter (updates) =============== */
+.search-filter {
+  padding: 24px 16px; text-align: center; background: #f9fafc;
+}
+.update-filter { margin-top: 12px; }
+.filter-btn {
+  padding: 8px 14px; margin: 0 5px;
+  border: 1px solid #1a3d7c; background: #fff; color: #1a3d7c;
+  border-radius: 6px; cursor: pointer; font-size: 14px;
+}
+.filter-btn.active, .filter-btn:hover { background: #1a3d7c; color: #fff; }
+
+/* =============== Updates Table (index, updates) =============== */
+.updates { max-width: 1000px; margin: 0 auto; padding: 24px 16px; }
+.updates h2 { font-size: 20px; color: #1a3d7c; margin-bottom: 10px; }
+
 .update-table {
-  width: 90%;
-  max-width: 1000px;
-  border-collapse: collapse;
-  margin: 20px auto;
+  width: 100%; border-collapse: collapse; margin-top: 8px;
+  border-top: 1px solid #e9ecef; border-bottom: 1px solid #e9ecef;
 }
-
-.update-table th,
-.update-table td {
-  border-bottom: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
+.update-table th, .update-table td {
+  padding: 12px 10px; text-align: left; border-bottom: 1px solid #f1f3f5;
 }
-
 .update-table th {
-  background: #f2f2f2;
-  font-weight: 600;
+  background: #f2f4f6; font-weight: 700; color: #495057;
 }
+.update-table td a { color: #1a3d7c; font-weight: 600; }
+.update-table td a:hover { text-decoration: underline; }
 
-.update-table td a {
-  color: #1a3d7c;
-  font-weight: 500;
-}
-
-.update-table td a:hover {
-  text-decoration: underline;
-}
-
-/* 더보기 버튼 */
-.more-btn-wrap {
-  text-align: center;
-  margin: 18px 0 30px;
-}
-
+.more-btn-wrap { text-align: right; margin-top: 12px; }
 .more-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #1a3d7c;
-  color: #fff;
-  border-radius: 8px;
-  font-size: 15px;
+  display: inline-block; padding: 8px 14px; border-radius: 8px;
+  background: #1a3d7c; color: #fff; font-size: 14px;
 }
+.more-btn:hover { background: #16346a; }
 
-.more-btn:hover {
-  background: #16346a;
+/* =============== Law Detail =============== */
+/* 그리드 2열(목차 + 본문) */
+.law-detail {
+  display: grid; grid-template-columns: 260px 1fr; gap: 32px;
+  max-width: 1200px; margin: 30px auto; padding: 0 20px;
 }
-
-/* ===========================
-   법령 상세 페이지
-=========================== */
-.law-container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 20px;
-}
-
 .law-title {
-  font-size: 26px;
-  margin-bottom: 8px;
-  color: #1a3d7c;
+  grid-column: span 2;
+  font-size: 26px; color: #1a3d7c; margin: 0;
 }
-
 .law-meta {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 20px;
+  grid-column: span 2;
+  font-size: 14px; color: #667085; margin: 8px 0 16px;
 }
 
-.law-article {
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #eee;
+/* 목차 */
+.law-toc {
+  align-self: start;
+  background: #f8fafc; border: 1px solid #e9ecef; border-radius: 12px;
+  padding: 18px;
 }
+.law-toc h2 { font-size: 16px; color: #1a3d7c; margin-bottom: 12px; }
+.law-toc ul { list-style: none; margin: 0; padding: 0; }
+.law-toc li { margin-bottom: 10px; }
+.law-toc a { color: #334155; font-size: 14px; }
+.law-toc a:hover { color: #1a3d7c; }
 
-.law-article h3 {
-  font-size: 18px;
-  margin-bottom: 6px;
+/* 본문 */
+.law-content {
+  background: #fff; border: 1px solid #e9ecef; border-radius: 12px;
+  padding: 20px;
 }
+.law-article { margin-bottom: 22px; }
+.law-article h3 { font-size: 18px; color: #1a3d7c; margin-bottom: 8px; }
+.law-article p, .law-article li { font-size: 15px; line-height: 1.7; color: #333; }
 
+/* Print button */
 .print-btn {
-  margin: 20px 0;
-  padding: 10px 20px;
-  background: #1a3d7c;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  grid-column: span 2;
+  margin: 8px 0 12px; padding: 10px 16px;
+  background: #1a3d7c; color: #fff; border: 0; border-radius: 8px; cursor: pointer;
 }
+.print-btn:hover { background: #16346a; }
 
-.print-btn:hover {
-  background: #16346a;
-}
-
-/* ===========================
-   푸터
-=========================== */
+/* =============== Footer =============== */
 .footer {
-  background: #f8f9fa;
-  text-align: center;
-  padding: 16px;
-  font-size: 14px;
-  color: #666;
-  margin-top: 40px;
+  background: #f8f9fa; color: #667085;
+  text-align: center; padding: 16px; font-size: 14px; margin-top: 40px;
 }
 
-/* ===========================
-   모바일 대응
-=========================== */
+/* =============== Responsive =============== */
+@media (max-width: 992px) {
+  .update-table th, .update-table td { padding: 10px 8px; }
+}
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+  .header { flex-direction: column; align-items: flex-start; }
+  .nav { margin-top: 6px; }
 
-  .nav {
-    margin-top: 8px;
-  }
+  .search-section { padding: 16px 12px; }
+  .search-box { display: flex; flex-direction: column; gap: 8px; border: 0; padding: 0; }
+  .search-box input { width: 100%; }
 
-  .search-box {
-    flex-direction: column;
-    gap: 8px;
-  }
+  .updates { padding: 16px 12px; }
+  .update-table th, .update-table td { padding: 8px 6px; font-size: 13px; }
 
-  .search-box input {
-    width: 100%;
-  }
-
-  .update-table th,
-  .update-table td {
-    padding: 8px;
-    font-size: 13px;
-  }
-
-  .law-title {
-    font-size: 22px;
-  }
+  .law-detail { grid-template-columns: 1fr; gap: 20px; }
+  .law-toc { order: -1; }
+  .law-title { font-size: 22px; }
 }
